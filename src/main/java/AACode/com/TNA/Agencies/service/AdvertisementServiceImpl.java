@@ -11,6 +11,7 @@ import AACode.com.TNA.Agencies.request.CreateAdvertisementRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -43,8 +44,10 @@ public class AdvertisementServiceImpl implements AdvertisementService{
         advertisement.setImages(createAdvertisementRequest.getImages());
         advertisement.setDescription(createAdvertisementRequest.getDescription());
         advertisement.setPrice(createAdvertisementRequest.getPrice());
+        advertisement.setPublishedDate(LocalDateTime.now());
 
         advertisement.setContactInformation(createAdvertisementRequest.getContactInformation());
+        advertisement.setAddress(address);
         advertisement.setDistrictCategory(category);
         advertisement.setCustomer(user);
 
