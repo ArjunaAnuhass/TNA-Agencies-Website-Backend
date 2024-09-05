@@ -9,6 +9,9 @@ import java.util.List;
 
 public interface AdvertisementRepository extends JpaRepository<Advertisement, Long> {
 
-    @Query("SELECT a FROM Advertisement a WHERE a.title LIKE %:keyword% OR a.districtCategory.name LIKE %:keyword%")
-    List<Advertisement> searchAdvertisement(@Param("keyword") String keyword);
+    @Query("SELECT a FROM Advertisement a WHERE lower(a.title) LIKE lower(concat('%', :query, '%')) OR lower(a.districtCategory) LIKE lower(concat('%', :query, '%'))")
+
+    List<Advertisement> findBySearchQuery(String query);
+
+    List<Advertisement> findByCustomerId(Long userId);
 }
