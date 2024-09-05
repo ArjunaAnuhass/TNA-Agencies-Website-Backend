@@ -15,5 +15,5 @@ public class AdvertisementDTO {
     @Column(length = 1000)
     private List<String> images;
     private String description;
-    private String id;
+    private Long id;
 }
