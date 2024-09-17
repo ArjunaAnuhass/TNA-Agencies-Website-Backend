@@ -75,4 +75,13 @@ public class AdvertisementController {
 
         return new ResponseEntity<>(advertisementDTO, HttpStatus.OK);
     }
+
+    @GetMapping(path = "/{id}")
+    public ResponseEntity<Advertisement> getAdvertisementById(@RequestHeader("Authorization") String jwt, @PathVariable Long id) throws Exception {
+        User user = userService.findUserByJwtToken(jwt);
+
+        Advertisement advertisement = advertisementService.findAdvertisementById(id);
+
+        return new ResponseEntity<>(advertisement, HttpStatus.OK);
+    }
 }
